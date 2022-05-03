@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'Home/css/style.min.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="ms-4" src="{% static 'Home/image/logo.png' %}" alt="Логотип">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="offset-xxl-1">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="navbar-brand" href="{% url 'vac_list' %}"><img src="{% static 'Home/image/search.png' %}" alt="Поиск"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link h3" aria-current="page" href="{% url 'home' %}">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link h3" href="{% url 'news' %}">Новости</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link h3" href="#">Документы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link h3" href="#">Календарь</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link h3" href="#">Подразделения</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% block content %}
+{% endblock %}
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer__wrapper col-8 col-md-5 col-lg-4 col-xl-3">
+                        <span class="footer__title">Контактная информация</span><br>
+                        <span class="footer__tel">Телефон: <a class="footer__href" href="tel:84112507850">+8(4112) 507-850</a></span><br>
+                        <span class="footer__mail">Mail:<a class="footer__href" href="mailto:gkzn.sakha.gov.ru">gkzn.sakha.gov.ru</a></span>
+                </div>
+                <div class="footer__social offset-md-4 offset-lg-5 offset-xl-6 col-4 col-sm-3">
+                    <a href="#" class="footer__href"><img src="{% static 'Home/icons/Youtube.svg' %}" alt="Ютуб канал"></a>
+                    <a href="#" class="footer__href"><img src="{% static 'Home/icons/Chrome.svg' %}" alt="Сайт"></a>
+                    <a href="#" class="footer__href"><img src="{% static 'Home/icons/Telegram.svg' %}" alt="Телеграм"></a>
+                    <a href="#" class="footer__href"><img src="{% static 'Home/icons/Vk.svg' %}" alt="ВК"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

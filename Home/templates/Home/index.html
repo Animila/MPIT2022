@@ -1,0 +1,58 @@
+{% extends 'Home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="home-page">
+        <div class="container">
+            <img class="home-page__logo" src="{% static 'Home/image/main_logo.png' %}" alt="Логотип">
+            <div class="home-page__wrapper">
+                <div class="row justify-content-between">
+                    <div class="home-page__item col-4">
+                        <a href="{% url 'news' %}">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/news.png' %}" alt="">
+                            <span class="home-page__subtitle">Новости</span>
+                            <span class="home-page__descr">Посмотреть последние новости ЦЗН по РС(Я)</span>
+                        </a>
+                    </div>
+                    <div class="home-page__item offset-xxl-4 col-xxl-4">
+                        <a href="">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/doc.png' %}" alt="">
+                            <span class="home-page__subtitle">Документы</span>
+                            <span class="home-page__descr">Юридическая информация</span>
+                        </a>
+                    </div>
+                    <div class="home-page__item col-xxl-4">
+                        <a href="">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/calendar.png' %}" alt="">
+                            <span class="home-page__subtitle">Календарь</span>
+                            <span class="home-page__descr">Просмотр ближайших событий</span>
+                        </a>
+                    </div>
+                    <div class="home-page__item offset-xxl-4 col-4">
+                        <a href="{% url 'vac_list' %}">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/search.png' %}" alt="">
+                        <span class="home-page__subtitle">Поиск ваканский</span>
+                        <span class="home-page__descr">Просмотр ближайших событий</span>
+                        </a>
+                    </div>
+                    <div class="home-page__item col-4">
+                        <a href="">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/area.png' %}" alt="">
+                        <span class="home-page__subtitle">Подразделения</span>
+                        <span class="home-page__descr">Структурное подразделение и филиалы РС(Я)</span>
+                        </a>
+                    </div>
+                    <div class="home-page__item offset-xxl-4 col-xxl-4">
+                        <a href="">
+                            <img class="home-page__img" src="{% static 'Home/image/home-page/area.png' %}" alt="">
+                        <span class="home-page__subtitle">Подразделения</span>
+                        <span class="home-page__descr">Структурное подразделение и филиалы РС(Я)</span>
+                        </a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
