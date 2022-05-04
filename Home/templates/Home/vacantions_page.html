@@ -2,30 +2,47 @@
 
 {% block content %}
 
-{% if error %}
-<h2>{{ error }}</h2>
-{% else %}
-{% autoescape off %}
-<h2>{{ title_work }}</h2>
-<p>Категории: {% for i in category %}{{ i }}{% endfor %}</p>
-<hr>
-<h3>О компании</h3>
-<p>Название: {{ company_name }}</p>
-<p>Страница компании: <a href="{{ company_url }}">{{ company_url }}</a></p>
-<p>Телефон компании: <a href="tel:{{ company_phone }}">{{ company_phone }}</a></p>
-<hr>
-    <p>Запрлата от {{ salary_max }} до {{ salary_min }} рублей</p>
-    <p>Тип занятости: {{ employment }}</p>
-    <p>График: {{ schedule }}</p>
-<h3>Детали вакансии</h3>
-    <p>Должностные обязанности: {{ duty }}</p>
-<h3>Требования</h3>
-    <P>Образование: {{ education }}</P>
-    <P>Опыт работы: {{ exp }}</P>
-    <P>Описание: {{ qual }}</P>
-    <p>Адрес: {{addresses}}</p>
-<hr>
-{% endautoescape %}
-{% endif %}
-<a href="{% url 'vac_list' %}">Назад</a>
+<div class="container">
+    {% if error %}
+        <h2>{{ error }}</h2>
+        <hr>
+    {% else %}
+
+
+            <h2 class="vac-detail__title">{{ title_work }}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-7 vac-detail__block">
+                <span class="vac-detail__subtitle">Должностные обязанности:</span>
+                {% autoescape off %}{{ duty }}{% endautoescape %}
+                <hr>
+                <span class="vac-detail__subtitle">Требования по вакансии</span>
+                    Профессия: {{ title_work }}<br>
+                    Образование: {{ education }}<br>
+                    Опыт работы: {{ exp }}
+                <hr>
+                {% if text %}
+                    <span class="vac-detail__subtitle">Соц пакеты</span>
+                    {% autoescape off %}{{ text }}{% endautoescape %}
+                {% endif %}
+            </div>
+        <div class="col-4 vac-detail__block vac-detail__block_comp">
+            {% if solary_min and solary_max %}
+            <p class="vac-detail__title-comp">
+                {% if salary_min != 0 or salary_min != salary_max %}от {{ salary_min }}{% endif %}
+                {% if salary_max == '0' %} до {{ salary_max }}{% endif %}
+            </p>
+            {% else %}
+                <p class="vac-detail__title-comp">По договоренности</p>
+            {% endif %}
+            {% if company_url %}<a href="{{ company_url }}" class="vac-detail__block_comp_title">{% endif %}{{ company_name }}{% if company_url %}</a>{% endif %}
+            <span class="vac-detail__block_comp__address">{{ addresses }}</span>
+            <a href="{{vac_url}}" class="button">Посмотреть вакансию</a>
+        </div>
+        </div>
+       </div>
+    {% endif %}
+                <a href="{% url 'vac_list' %}" class="button">Назад</a>
+    </div>
+<br>
 {% endblock %}

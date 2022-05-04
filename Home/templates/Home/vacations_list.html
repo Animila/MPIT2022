@@ -28,7 +28,14 @@
                     <div class="offset-1 col-10 vac-list__title">{{ i.title_job }}</div>
                     <div class="offset-1 col-10 vac-list__company">{{ i.company }}</div>
                     <div class="offset-1 col-10 vac-list__category">{% for i in i.category %} {{ i }} |{% endfor %}</div>
-                    <div class="offset-1 col-10 vac-list__salary">от {{ i.salary.0 }} до {{ i.salary.1 }}</div>
+                    <div class="offset-1 col-10 vac-list__salary">
+                        {% if i.salary.0 != 0 %}
+                            от {{ i.salary.0 }}
+                        {% endif %}
+                        {% if i.salary.1 != 0 %}
+                            до {{ i.salary.1 }}
+                        {% endif %}
+                        </div>
                 </div>
             </div>
         </a>

@@ -26,16 +26,18 @@ def vacation_page(request, vac_id, comp_code):
     """Подробные вакансии"""
     context = {'title': 'Вакансии',}
     url = f'http://opendata.trudvsem.ru/api/v1/vacancies/vacancy/{comp_code}/{vac_id}'
+    print(url)
     api = requests.get(url).json()['results']
     if api == {}:
         context = {'error': 'К сожалению данная вакансия скрыта или удалена заказчиком'}
     else:
         data = api['vacancies'][0]['vacancy']
-        context['category'] = data['category']['specialisation'].split(', ')
         context['title_work'] = data['job-name']
         context['employment'] = data['employment']
         context['schedule'] = data['schedule']
         context['duty'] = data['duty']
+        context['vac_url'] = data['vac_url']
+
         if 'salary' in data:
             context['salary_min'] = data['salary_min']
             context['salary_max'] = data['salary_max']
@@ -59,18 +61,19 @@ def vacation_page(request, vac_id, comp_code):
         if 'qualification' in requirement:
             context['qual'] = requirement['qualification']
 
+        if 'term' in data:
+            context['text'] = data['term']['text']
+
     return render(request, 'Home/vacantions_page.html', context=context)
 
 
 def get_data(data):
     """Полученние данных"""
     vac = {}
-    for i in data:
+    for i in data['vacancies']:
         salary_min = i['vacancy']['salary_min']
         salary_max = i['vacancy']['salary_max']
-        salary = (salary_max, salary_min)
-        print(i)
-        print(salary_max, salary_min)
+        salary = (salary_min, salary_max)
         title_job = i['vacancy']['job-name']
         id = i['vacancy']['id']
         company = i['vacancy']['company']['name']
@@ -80,9 +83,8 @@ def get_data(data):
             vac[id] = {
                 'title_job': title_job, 'id': id, 'company': company,'company_code':company_code, 'category': category, 'salary': salary
             }
-            print(vac[id])
         else:
-            vac[id] = {'title_job': title_job, 'id': id, 'company': company,'company_code': company_code, 'salary': salary}
+            vac[id] = {'title_job': title_job, 'id': id, 'company': company,'company_code': company_code, 'salary': salary, 'url': url}
     return vac.values()
 
 
@@ -96,34 +98,10 @@ def vacation_list(request):
     else:
         answer = requests.get(url).json()
 
+
     if answer['results'] == {}:
         context = {'error': 'Ничего не найдено'}
-    else:
-        data = answer['results']['vacancies']
-        context['vac'] = get_data(data)
+
+    data = answer['results']
+    context['vac'] = get_data(data)
     return render(request, 'Home/vacations_list.html', context=context)
-
-# if 'education' in request.GET:
-#     print(request.GET['education'])
-#     for ed in request.GET['education'].split():
-#         url_add += f"&education={ed}"
-
-
-# for item in answer['results']['vacancies']:
-#     if 'education' in item['vacancy']['requirement']:
-#         if 'Высшее' in item['vacancy']['requirement']['education'] and 'HIGH' in request.GET['education'].split():
-#             data_result.append(item)
-#             count += 1
-#         elif 'Среднее профессиональное' in item['vacancy']['requirement']['education'] and 'MIDDLE_SPECIAL' in request.GET['education'].split():
-#             data_result.append(item)
-#             count += 1
-#         elif 'Неоконченное высшее' in item['vacancy']['requirement']['education'] and 'UNFINISHED_HIGH' in request.GET['education'].split():
-#             data_result.append(item)
-#             count += 1
-#         elif 'Среднее' in item['vacancy']['requirement']['education'] and 'MIDDLE' in request.GET['education'].split():
-#             data_result.append(item)
-#             count += 1
-# else:
-#     data_result = answer['results']['vacancies']
-# print(data_result)
-# print(count)

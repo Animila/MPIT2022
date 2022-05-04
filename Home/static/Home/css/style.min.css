@@ -516,14 +516,13 @@ body {
     width: 53vh;
     height: 6vh;
     border-radius: 4vh;
-    padding: 35px 0;
+    padding: 35px 35px;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
 }
 
 .form-search__input::-moz-placeholder {
-    padding-left: 35px;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -538,6 +537,115 @@ body {
     font-size: 36px;
 
     color: rgba(121, 121, 121, .35)
+}
+
+.vac-detail__title {
+    margin-top: 3vh;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39.06px;
+    line-height: 53px;
+    text-align: center;
+    color: #000000;
+}
+
+.vac-detail__subtitle {
+    min-height: 86px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 34px;
+    align-items: center;
+    display: flex;
+    justify-self: center;
+    color: #000000;
+}
+
+.vac-detail__title-comp {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 31.25px;
+    line-height: 43px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    min-height: 66px;
+}
+
+.vac-detail__block_comp__address {
+    height: 148px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.vac-detail__block_comp_title {
+    min-height: 148px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+}
+.vac-detail__block_comp_title:hover {
+    color: #000;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    width: 305px;
+    height: 52px;
+    background: #FD5F00;
+    border-radius: 21px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: center;
+    align-items: center;
+    margin-top: 9vh;
+    color: #F6F6E9;
+}
+.button:hover {
+    color: #F6F6E9;
+}
+
+.vac-detail__duty {
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: justify;
+    color: #000000;
+
+}
+
+.vac-detail__block {
+    background: #FFFFFF;
+    border: 1px solid #C9CBCB;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 0 110px 23px 110px;
+    margin: 0 13px;
+}
+
+.vac-detail__block_comp {
+    padding: 0 13px 45px 18px;
+    max-height: 464px;
+
 }
 
 .form-search__btn {
