@@ -1,0 +1,18 @@
+{% extends 'Home/base.html' %}
+{% block content %}
+
+<div class="container">
+    {% for item in data %}
+    <h2 class="text-center">{{ item.title }}</h2>
+    <div class="row">
+        <img class="col-5" style="width: 461px; height: 287px;" src="{{ item.image.url }}"/>
+        <p class="col-7" style="width: 729px; height: 344px; font-size: 14px; line-height: 100%; text-align: justify; color: black;">
+            {{ item.descr }}
+        </p>
+    <a href="{% url 'news' %}" class="btn btn-outline-primary">назад</a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

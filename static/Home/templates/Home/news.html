@@ -1,0 +1,18 @@
+{% extends 'Home/base.html' %}
+{% block content %}
+<div class="new-list">
+    <div class="container">
+        <h2 class="text-center h2">Новости</h2>
+
+        {% for item in data %}
+        <a href="{% url 'news_detail' item.slug %}">
+        <div style="width: 1296px; height: 289px; position: relative;">
+            <p style="width: 854px; height: 60px; left: 442px; top: 0px; position: absolute; font-size: 20px; color: black;">{{ item.title }}</p>
+            <p style="width: 854px; height: 228.82px; left: 442px; top: 10vh; position: absolute; font-size: 14px; line-height: 100%; text-align: justify; color: black;">{{ item.descr | truncatewords:50}}</p>
+            <img style="width: 416px; height: 249px; left: 0px; top: 20px; position: absolute;" src="{{ item.image.url }}"/>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'Home/base.html' %}
+
+{% block content %}
+
+{% if error %}
+<h2>{{ error }}</h2>
+{% else %}
+{% autoescape off %}
+<h2>{{ title_work }}</h2>
+<p>Категории: {% for i in category %}{{ i }}{% endfor %}</p>
+<hr>
+<h3>О компании</h3>
+<p>Название: {{ company_name }}</p>
+<p>Страница компании: <a href="{{ company_url }}">{{ company_url }}</a></p>
+<p>Телефон компании: <a href="tel:{{ company_phone }}">{{ company_phone }}</a></p>
+<hr>
+    <p>Запрлата от {{ salary_max }} до {{ salary_min }} рублей</p>
+    <p>Тип занятости: {{ employment }}</p>
+    <p>График: {{ schedule }}</p>
+<h3>Детали вакансии</h3>
+    <p>Должностные обязанности: {{ duty }}</p>
+<h3>Требования</h3>
+    <P>Образование: {{ education }}</P>
+    <P>Опыт работы: {{ exp }}</P>
+    <P>Описание: {{ qual }}</P>
+    <p>Адрес: {{addresses}}</p>
+<hr>
+{% endautoescape %}
+{% endif %}
+<a href="{% url 'vac_list' %}">Назад</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'Home/base.html' %}
+
+{% block content %}
+<section class="news-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-8" style="width: 856px; height: 195px;">
+                <h2 class="text-left form-search__title">Поиск вакансий</h2>
+                <div style="width: 100%">
+                    <form action="{% url 'vac_list' %}" method="get" class="form-search">
+                    <input type="text" name="search" placeholder="Введите текст" value="{{ search_text }}" class="form-search__input">
+                    <button class="form-search__btn">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if error %}
+            <h2 style="color: red;">{{ error }}</h2>
+        {% endif %}
+
+        <hr class="text-center">
+
+        {% for i in vac %}
+        <a href="{% url 'vac_page' i.company_code i.id  %}">
+            <div class="vac-list__item">
+                <div class="container">
+                    <div class="offset-1 col-10 vac-list__title">{{ i.title_job }}</div>
+                    <div class="offset-1 col-10 vac-list__company">{{ i.company }}</div>
+                    <div class="offset-1 col-10 vac-list__category">{% for i in i.category %} {{ i }} |{% endfor %}</div>
+                    <div class="offset-1 col-10 vac-list__salary">от {{ i.salary.0 }} до {{ i.salary.1 }}</div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    </section>
+{% endblock %}
